@@ -581,6 +581,16 @@
             transform: scale(1.15);
         }
 
+        .range-slider::-moz-range-thumb {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--fire-gold), var(--fire-orange));
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 61, 0, 0.8);
+            border: none;
+        }
+
         .calc-results {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -835,7 +845,7 @@
             <div class="step-card reveal">
                 <div class="step-num">01</div>
                 <div class="step-icon">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle></svg>
                 </div>
                 <h3>System Registration</h3>
                 <p>Complete fast compliance verification to access your encrypted Base Exchange Pro operator terminal.</p>
@@ -852,6 +862,9 @@
 
             <div class="step-card reveal" style="transition-delay: 0.2s;">
                 <div class="step-num">03</div>
+                <div class="step-icon">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M3 21v-5h5"></path></svg>
+                </div>
                 <h3>Bank Account Linking</h3>
                 <p>Integrate your global or regional commercial bank routing channels for instant fiat conversions.</p>
             </div>
@@ -945,7 +958,7 @@
 
             <div class="benefit-card reveal" style="transition-delay: 0.2s;">
                 <div class="benefit-icon">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
                 </div>
                 <div class="benefit-content">
                     <h4>Dedicated Account Manager</h4>
@@ -998,163 +1011,156 @@
 
         <div class="footer-bottom">
             <p>&copy; 2026 Base Exchange Pro. All rights reserved.</p>
-            <p>High-frequency operations carry financial risks. Verify compliance in your home jurisdiction.</p>
+            <div style="display: flex; gap: 20px;">
+                <a href="#" style="color: var(--text-muted); text-decoration: none; transition: color 0.2s;">Twitter</a>
+                <a href="#" style="color: var(--text-muted); text-decoration: none; transition: color 0.2s;">Discord</a>
+                <a href="#" style="color: var(--text-muted); text-decoration: none; transition: color 0.2s;">GitHub</a>
+            </div>
         </div>
     </footer>
 
     <script>
-        const canvas = document.getElementById('fire-canvas');
-        const ctx = canvas.getContext('2d');
+        // Typewriter Effect
+        const typewriterText = "Unlock Enterprise-Grade Liquidity Returns";
+        const typewriterElement = document.getElementById('typewriter');
+        let typewriterIndex = 0;
 
-        let width, height;
-        let particles = [];
-
-        function resizeCanvas() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
+        function typeWriter() {
+            if (typewriterIndex < typewriterText.length) {
+                typewriterElement.innerHTML += typewriterText.charAt(typewriterIndex);
+                typewriterIndex++;
+                setTimeout(typeWriter, 60);
+            } else {
+                typewriterElement.innerHTML = `<span class="hero-title-highlight">${typewriterText}</span>`;
+            }
         }
 
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+        // Fire Canvas Animation
+        const canvas = document.getElementById('fire-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
 
         class Particle {
-            constructor() {
-                this.reset();
-            }
-
-            reset() {
-                this.x = Math.random() * width;
-                this.y = height + Math.random() * 100;
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
                 this.size = Math.random() * 3 + 1;
-                this.speedY = Math.random() * 1.8 + 0.6;
-                this.speedX = (Math.random() - 0.5) * 0.8;
-                this.opacity = Math.random() * 0.8 + 0.2;
-                this.color = Math.random() > 0.4 ? '#ff3d00' : (Math.random() > 0.5 ? '#ffb300' : '#d32f2f');
-                this.life = 0;
-                this.maxLife = Math.random() * 200 + 100;
+                this.speedX = (Math.random() - 0.5) * 2;
+                this.speedY = Math.random() * -3 - 1;
+                this.opacity = Math.random() * 0.5 + 0.3;
+                this.color = ['rgba(255, 61, 0,', 'rgba(255, 179, 0,', 'rgba(211, 47, 47,'][Math.floor(Math.random() * 3)];
             }
 
             update() {
-                this.y -= this.speedY;
-                this.x += this.speedX + Math.sin(this.life * 0.05) * 0.5;
-                this.life++;
-                this.opacity = (1 - (this.life / this.maxLife)) * 0.8;
-
-                if (this.life >= this.maxLife || this.y < -10) {
-                    this.reset();
-                }
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.opacity -= 0.015;
+                this.size *= 0.98;
             }
 
             draw() {
-                ctx.save();
-                ctx.globalAlpha = Math.max(0, this.opacity);
-                ctx.fillStyle = this.color;
-                ctx.shadowBlur = 12;
-                ctx.shadowColor = this.color;
+                ctx.fillStyle = this.color + this.opacity + ')';
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
-                ctx.restore();
             }
         }
 
-        for (let i = 0; i < 70; i++) {
-            particles.push(new Particle());
+        function animateFireCanvas() {
+            ctx.fillStyle = 'rgba(5, 5, 5, 0.02)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = particles.length - 1; i >= 0; i--) {
+                particles[i].update();
+                particles[i].draw();
+                if (particles[i].opacity <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+
+            if (Math.random() > 0.7) {
+                particles.push(new Particle(
+                    Math.random() * canvas.width,
+                    canvas.height + 10
+                ));
+            }
+
+            requestAnimationFrame(animateFireCanvas);
         }
 
-        function animateParticles() {
-            ctx.clearRect(0, 0, width, height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(animateParticles);
-        }
-
-        animateParticles();
-
+        // Mouse Follow Glow
         const ambientGlow = document.getElementById('ambient-glow');
-        window.addEventListener('mousemove', (e) => {
-            ambientGlow.style.setProperty('--mouse-x', `${e.clientX}px`);
-            ambientGlow.style.setProperty('--mouse-y', `${e.clientY}px`);
+        document.addEventListener('mousemove', (e) => {
+            ambientGlow.style.setProperty('--mouse-x', e.clientX + 'px');
+            ambientGlow.style.setProperty('--mouse-y', e.clientY + 'px');
         });
 
+        // Scroll Header Effect
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 40) {
+            if (window.scrollY > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
         });
 
-        const typewriterElement = document.getElementById('typewriter');
-        const phrase = "Forge Your Future with Base Exchange Pro";
-        let charIndex = 0;
-
-        function typeEffect() {
-            if (charIndex <= phrase.length) {
-                const currentText = phrase.substring(0, charIndex);
-                if (currentText.includes("Base Exchange Pro")) {
-                    const parts = currentText.split("Base Exchange Pro");
-                    typewriterElement.innerHTML = parts[0] + `<span class="hero-title-highlight">Base Exchange Pro</span>` + parts[1];
-                } else {
-                    typewriterElement.textContent = currentText;
-                }
-                charIndex++;
-                setTimeout(typeEffect, 50);
-            }
-        }
-
-        setTimeout(typeEffect, 300);
-
+        // Scroll Reveal Animation
         const revealElements = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+
+        function reveal() {
+            revealElements.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
                 }
             });
-        }, { threshold: 0.15 });
+        }
 
-        revealElements.forEach(el => revealObserver.observe(el));
+        window.addEventListener('scroll', reveal);
+        reveal();
 
-        const slider = document.getElementById('capital-slider');
-        const display = document.getElementById('capital-display');
-        const dailyEl = document.getElementById('daily-yield');
-        const monthlyEl = document.getElementById('monthly-yield');
-        const annualEl = document.getElementById('annual-yield');
-        const presetBtns = document.querySelectorAll('.preset-btn');
+        // Calculator Functions
+        function setCapital(amount) {
+            document.getElementById('capital-slider').value = amount;
+            updateCalculator();
+            
+            // Update active preset button
+            document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
 
         function updateCalculator() {
-            const val = parseInt(slider.value);
-            display.textContent = `$${val.toLocaleString()} USDT`;
+            const capital = parseFloat(document.getElementById('capital-slider').value);
+            const dailyRate = 0.018;
+            
+            const dailyYield = capital * dailyRate;
+            const monthlyYield = dailyYield * 30;
+            const annualYield = dailyYield * 365;
 
-            const dailyRate = val >= 5000 ? 0.022 : (val >= 2500 ? 0.018 : 0.015);
-            const daily = val * dailyRate;
-            const monthly = daily * 30;
-            const annual = daily * 365;
-
-            dailyEl.textContent = `$${daily.toFixed(2)} USDT`;
-            monthlyEl.textContent = `$${monthly.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} USDT`;
-            annualEl.textContent = `$${annual.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} USDT`;
-
-            presetBtns.forEach(btn => {
-                const btnVal = parseInt(btn.textContent.replace('$', '').replace(',', ''));
-                if (btnVal === val) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
+            document.getElementById('capital-display').textContent = '$' + capital.toLocaleString() + ' USDT';
+            document.getElementById('daily-yield').textContent = '$' + dailyYield.toFixed(2) + ' USDT';
+            document.getElementById('monthly-yield').textContent = '$' + monthlyYield.toFixed(2) + ' USDT';
+            document.getElementById('annual-yield').textContent = '$' + annualYield.toFixed(2) + ' USDT';
         }
 
-        function setCapital(amount) {
-            slider.value = amount;
-            updateCalculator();
-        }
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
 
+        // Initialize
+        typeWriter();
+        animateFireCanvas();
         updateCalculator();
     </script>
+
 </body>
 </html>
