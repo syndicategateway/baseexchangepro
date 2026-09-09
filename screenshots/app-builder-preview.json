@@ -1,0 +1,39 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Base Exchange Pro",
+      "hasCanvas": true,
+      "bodyTextLen": 3233,
+      "bodyTextHash": "3ff93b8d4714e7f69d9ca61d32ca95d719a743ab7fb1bf82a3c7a3a3aca3b115",
+      "bodyTextPrefix": "Base Exchange Pro How It Works Benefits Features Dashboard Login",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Base Exchange Pro",
+      "hasCanvas": true,
+      "bodyTextLen": 3186,
+      "bodyTextHash": "1fabd011c6d75f14b292ec9576cd52eb82f1826b20694ad4add8f65adebad89b",
+      "bodyTextPrefix": "Base Exchange Pro OPERATOR INFRASTRUCTURE Stable income and flex",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [
+    "BRAND WARNING: this looks like a game/canvas app but src/lib/og/site.json is missing \"type\": \"x:game\". X uses og:type=x:game to present the unfurl as a game card — set it in /workspace/src/lib/og/site.json per /workspace/.grok/skills/og/SKILL.md. Do not invent x:type or overload twitter:card as the game signal.",
+    "BRAND WARNING: this looks like a game/canvas app but /workspace/public/x-banner.jpg is missing. Games need a 50:11 X feed card (1200×264 JPEG) at public/x-banner.jpg — open /workspace/.grok/skills/og/SKILL.md and finish the brand-asset pass."
+  ],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}
